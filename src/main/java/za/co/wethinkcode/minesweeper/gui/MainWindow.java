@@ -11,9 +11,11 @@ import javax.swing.WindowConstants;
 
 public class MainWindow extends JFrame {
 
-	int gridSize = 100;
+	int cellsInRow = 30;
+	int buttonSize = 30;
+	int numCells = cellsInRow * cellsInRow;
 	
-	ArrayList<JButton> btns = new ArrayList<JButton>(gridSize);
+	ArrayList<JButton> btns = new ArrayList<JButton>(numCells);
 	
 	public MainWindow() {
 		super("Minesweeper");
@@ -21,10 +23,10 @@ public class MainWindow extends JFrame {
 		setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		setResizable(false);
 		
-		for (int i = 0; i < gridSize; i++) {
+		for (int i = 0; i < numCells; i++) {
 			JButton btn = new JButton();
 			// Change size of buttons
-			btn.setPreferredSize(new Dimension(30, 30));
+			btn.setPreferredSize(new Dimension(buttonSize, buttonSize));
 			btn.setMargin(new Insets(0, 0, 0, 0));
 			
 			getContentPane().add(btn);
@@ -32,8 +34,9 @@ public class MainWindow extends JFrame {
 		}
 		
 		// Figure out calculation
-		setSize(new Dimension(306, 300 + 30));
-		setVisible(true);
+		getContentPane().setPreferredSize(new Dimension(cellsInRow * buttonSize, cellsInRow * buttonSize));
+		pack();
+		setVisible(true);		
 	}	
 }
 
